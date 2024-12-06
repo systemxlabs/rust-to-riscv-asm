@@ -1,5 +1,5 @@
 # rust-to-riscv-asm
-A bare metal program example about converting rust code to RISC-V assembly.
+A bare metal program example about how to convert rust code to RISC-V assembly.
 
 ## Get started
 

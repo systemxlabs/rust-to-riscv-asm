@@ -7,7 +7,21 @@ mod console;
 mod lang_items;
 mod heap;
 
-core::arch::global_asm!(include_str!("entry.asm"));
+static BOOT_STACK_SIZE: usize = 10 * 1024 * 1024;  // 10M
+static BOOT_STACK: [u8; BOOT_STACK_SIZE] = [0u8; BOOT_STACK_SIZE];
+
+core::arch::global_asm!("
+    .section .text.entry
+    .global _start
+_start:
+    la sp, {boot_stack}
+    li t0, {boot_stack_size}
+    add sp, sp, t0
+    call rust_main
+",
+boot_stack = sym BOOT_STACK,
+boot_stack_size = const BOOT_STACK_SIZE
+);
 
 #[no_mangle]
 fn rust_main() -> ! {
