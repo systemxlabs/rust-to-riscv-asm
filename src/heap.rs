@@ -30,5 +30,5 @@ fn heap_test() {
     assert_eq!(v[0], 0);
     assert_eq!(v[99], 99);
     assert_eq!(v[999], 999);
-    println!("v: {:?}", v);
+    // println!("v: {:?}", v);
 }

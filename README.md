@@ -25,3 +25,9 @@ Run
 ```shell
 make run
 ```
+output
+```
+Hello, world!
+inited heap: [0x80c09000, 0xc0c09000)
+1 + 2 = 3
+```
