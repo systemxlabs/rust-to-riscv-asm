@@ -11,6 +11,7 @@ make build
 # output asm to a file
 make asm > output
 ```
+![](./screenshots/riscv-asm.png)
 
 ### Run example on qemu
 Need install qemu
@@ -36,4 +37,4 @@ inited heap: [0x80c09000, 0xc0c09000)
 1.Open site: https://rust.godbolt.org/
 
 2.Add `--target riscv64gc-unknown-linux-gnu` to compiler options
-![](./complier-explorer.png)
+![](./screenshots/complier-explorer.png)

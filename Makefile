@@ -12,7 +12,7 @@ build:
 	@cargo build $(MODE_ARG)
 
 asm:
-	@rust-objdump --arch=riscv64 -D $(PROJECT_ELF)
+	@rust-objdump --arch=riscv64 --disassemble --line-numbers --demangle $(PROJECT_ELF)
 
 $(PROJECT_BIN): build
 	@rust-objcopy $(PROJECT_ELF) --strip-all -O binary $@
