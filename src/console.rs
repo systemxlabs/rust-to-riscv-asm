@@ -4,10 +4,7 @@ struct Stdout;
 
 impl Write for Stdout {
     fn write_str(&mut self, s: &str) -> fmt::Result {
-        // let _ret = sbi_rt::console_write(sbi_rt::Physical::new(s.len(), s.as_ptr() as usize, 0));
-        for c in s.chars() {
-            sbi_rt::legacy::console_putchar(c as usize);
-        }
+        let _ret = sbi_rt::console_write(sbi_rt::Physical::new(s.len(), s.as_ptr() as usize, 0));
         Ok(())
     }
 }

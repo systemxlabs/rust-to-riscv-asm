@@ -14,20 +14,21 @@ pub fn init_heap() {
         // 1G
         let heap_size = 1024 * 1024 * 1024;
         HEAP_ALLOCATOR.lock().init(image_end as usize, heap_size);
-        // println!("inited heap: [{:#x}, {:#x})", image_end as usize, image_end as usize + heap_size);
+        println!("inited heap: [{:#x}, {:#x})", image_end as usize, image_end as usize + heap_size);
     }
 
-    // heap_test();
+    heap_test();
 }
 
 #[allow(dead_code)]
 fn heap_test() {
     let mut v = Vec::new();
-    for i in 0..100 {
+    for i in 0..1000 {
         v.push(i);
     }
-    assert_eq!(v.len(), 100);
+    assert_eq!(v.len(), 1000);
     assert_eq!(v[0], 0);
     assert_eq!(v[99], 99);
-    // println!("v: {:?}", v);
+    assert_eq!(v[999], 999);
+    println!("v: {:?}", v);
 }

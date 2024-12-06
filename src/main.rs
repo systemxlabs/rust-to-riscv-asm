@@ -7,22 +7,7 @@ mod console;
 mod lang_items;
 mod heap;
 
-static BOOT_STACK_SIZE: usize = 10 * 1024 * 1024;  // 10M
-
-static BOOT_STACK: [u8; BOOT_STACK_SIZE] = [0u8; BOOT_STACK_SIZE];
-
-core::arch::global_asm!("
-    .section .text.entry
-    .global _start
-_start:
-    la sp, {boot_stack}
-    li a0, {boot_stack_size}
-    add sp, sp, t0
-    call rust_main
-",
-boot_stack = sym BOOT_STACK,
-boot_stack_size = const BOOT_STACK_SIZE
-);
+core::arch::global_asm!(include_str!("entry.asm"));
 
 #[no_mangle]
 fn rust_main() -> ! {
@@ -32,27 +17,6 @@ fn rust_main() -> ! {
 
     let sum = add_number(1, 2);
     println!("1 + 2 = {}", sum);
-
-    let sum = add_number(1, 2);
-    println!("1 + 2 = {}", sum);
-
-    let sum = add_number(1, 2);
-    assert_eq!(sum, 3);
-
-    let sum = add_number(1, 2);
-    assert_eq!(sum, 3);
-
-    let sum = add_number(1, 3);
-    assert_eq!(sum, 4);
-
-    let sum = add_number(1, 4);
-    assert_eq!(sum, 5);
-
-    let sum = add_number(1, 5);
-    assert_eq!(sum, 6);
-
-    let sum = add_number(1, 6);
-    assert_eq!(sum, 7);
 
     sbi_rt::system_reset(sbi_rt::Shutdown, sbi_rt::NoReason);
     unreachable!()
