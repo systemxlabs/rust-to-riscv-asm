@@ -31,3 +31,9 @@ Hello, world!
 inited heap: [0x80c09000, 0xc0c09000)
 1 + 2 = 3
 ```
+
+## Another way: Compiler Explorer site
+1.Open site: https://rust.godbolt.org/
+
+2.Add `--target riscv64gc-unknown-linux-gnu` to compiler options
+![](./complier-explorer.png)
