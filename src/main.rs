@@ -8,6 +8,7 @@ mod lang_items;
 mod heap;
 
 static BOOT_STACK_SIZE: usize = 10 * 1024 * 1024;  // 10M
+#[link_section = ".bss.stack"]
 static BOOT_STACK: [u8; BOOT_STACK_SIZE] = [0u8; BOOT_STACK_SIZE];
 
 core::arch::global_asm!("
