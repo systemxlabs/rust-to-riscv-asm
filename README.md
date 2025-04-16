@@ -1,6 +1,8 @@
 # rust-to-riscv-asm
 A bare metal program example about how to convert rust code to RISC-V assembly.
 
+[B 站视频讲解](https://www.bilibili.com/video/BV1DNqWY7Es6)
+
 ## Get started
 
 ### Generate assembly
